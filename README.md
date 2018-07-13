@@ -1,6 +1,6 @@
 Information Extraction project based on twitter data and exploration based on hashtags and use of emojis
 
-In respect to the Twitter licensing, the dataset is not provided, only the files containing Tweet's IDs. The Tweets can, however, be retrieved automatically using the script 'repopulate.py', provided key authentifications to twitter API.
+In respect to the Twitter licensing, the dataset is not provided, only the files containing Tweet's IDs. The Tweets can, however, be retrieved, provided key authentifications to twitter API.
 
 There are 4 different corpora :
 
