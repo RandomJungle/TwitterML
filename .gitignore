@@ -1,0 +1,11 @@
+.buildpath
+.project
+.pydevproject
+*.pyc
+__pycache__
+
+# avoid adding private keys
+private.py
+
+# avoid adding actual corpus, in respect to Twitter's licence
+*.csv
