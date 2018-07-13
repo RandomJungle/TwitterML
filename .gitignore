@@ -1,4 +1,6 @@
 .buildpath
+.settings
+.vscode
 .project
 .pydevproject
 *.pyc
