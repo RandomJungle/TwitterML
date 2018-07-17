@@ -19,7 +19,7 @@ class HashtagStreamListener(tweepy.StreamListener):
         
         # Only interested in french tweets
         lang = status.lang
-        if lang == 'en' :
+        if lang == 'fr' :
 
             # And in tweets that have a hashtag (I only use the first one)
             hashtags = status.entities['hashtags']
@@ -38,13 +38,14 @@ class HashtagStreamListener(tweepy.StreamListener):
                     timestamp = status.timestamp_ms
 
                     # Deleting the hashtags and urls inside the text of the tweets to not mess up the model
-                    text = re.sub("#([\w])*", ' ', text)
+                    # text = re.sub("#([\w])*", ' ', text)
+                    # text = re.sub("@([\S])*", ' ', text)
                     text = re.sub("https([\S])*", ' ', text)
                     text = re.sub("(\s){2,}", ' ', text)
 
                     # Write extracted data to csv file
-                    with open(self.filename+'.csv', 'a', encoding='utf-8') as datafile, open(self.filename+'.txt', 'a', encoding='utf-8') as idfile:
-                        datafile.write("{0}\t{1}\t{2}\t{3}\n".format(ID, timestamp, text, hashtag))
+                    with open(self.filename+'_'+lang+'.csv', 'a', encoding='utf-8') as datafile, open(self.filename+'_'+lang+'.txt', 'a', encoding='utf-8') as idfile:
+                        datafile.write("{0}\t{1}\t{2}\n".format(ID, timestamp, text))
                         idfile.write(str(ID) + '\n')
 
 class EmojiStreamListener(tweepy.StreamListener):
@@ -95,7 +96,7 @@ class EmojiStreamListener(tweepy.StreamListener):
 
                         # Clearing url from tweet's text
                         text = re.sub("https([\S])*", ' ', text)
-                        text = re.sub("@([\w])*", ' ', text)
+                        text = re.sub("@([\S])*", ' ', text)
                         text = re.sub("(\s){2,}", ' ', text)
 
                         # Write extracted data to csv file, and to corresponding idfile
@@ -105,8 +106,8 @@ class EmojiStreamListener(tweepy.StreamListener):
 
 if __name__ == '__main__':
 
-    mode = 'emoji'
-    #mode = 'hashtag'
+    #mode = 'emoji'
+    mode = 'hashtag'
 
     if mode == 'emoji':
         emoji_stream_listener = EmojiStreamListener('data_emojis_4')
@@ -114,6 +115,6 @@ if __name__ == '__main__':
         emoji_stream.filter(track=settings.EMOJIS)
 
     elif mode == 'hashtag':
-        hashtag_stream_listener = HashtagStreamListener('data_hashtags')
+        hashtag_stream_listener = HashtagStreamListener('data_hashtags_worldcup_2')
         hashtag_stream = tweepy.Stream(auth = api.auth, listener=hashtag_stream_listener)
-        hashtag_stream.filter(track=settings.STOPWORDS)
+        hashtag_stream.filter(track=settings.WORLDCUP)
