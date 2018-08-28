@@ -1,7 +1,6 @@
-Information Extraction project based on twitter data and exploration based on hashtags and use of emojis
+Information Extraction project based on exploration of twitter data based on hashtags and use of emojis
 
-In respect to the Twitter licensing, the dataset is not provided, only the files containing Tweet's IDs. The Tweets can, however, be retrieved, provided key authentifications to twitter API.
-
+In respect to the Twitter licensing, the dataset is not provided, only the files containing Tweet's IDs. The Tweets can be retrieved with the Twitter API using these lists of IDs, provided key authentifications.
 There are 4 different corpora :
 
 - "data_emoji_2.txt" is a list of IDs for tweets classified according to their use of 3 emojis (refered by the Unicode consortium as 'loudly crying face', 'face with tears of joy' and 'weary face'). Those were chosen based on their high ranking of use on twitter
